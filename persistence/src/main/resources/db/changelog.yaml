@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Healthmetrix GmbH
+      comment: Setup tables
+      changes:
+        - sqlFile:
+            path: db/sql/01-table-setup.sql
+  - changeSet:
+      id: 2
+      author: Healthmetrix GmbH
+      comment: Remove unused columns
+      changes:
+        - sqlFile:
+            path: db/sql/02-remove-unused-columns.sql
+  - changeSet:
+      id: 3
+      author: Healthmetrix GmbH
+      comment: Add message title
+      changes:
+        - sqlFile:
+            path: db/sql/03-add-message-title.sql
+  - changeSet:
+      id: 4
+      author: Healthmetrix GmbH
+      comment: Remove cohort_id and add cohort_name. cohort_id is inferred by request_id
+      changes:
+        - sqlFile:
+            path: db/sql/04-remove-cohort-id-add-cohort-name.sql

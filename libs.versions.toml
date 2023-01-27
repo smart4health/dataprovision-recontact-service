@@ -1,0 +1,97 @@
+[versions]
+kotlin = "1.8.0"
+spring-boot = "3.0.2"
+spring-framework = "6.0.4"
+spring-cloud = "4.0.0"
+junit = "5.9.2"
+jackson = "2.14.1"
+slf4j = "2.0.6"
+jdbi = "3.36.0"
+aws = "2.19.25"
+micrometer = "1.10.3"
+
+[plugins]
+gradle-versions = { id = "com.github.ben-manes.versions", version = "0.44.0"}
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+[libraries]
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
+
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-starter-jdbc", version.ref = "spring-boot" }
+spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "spring-boot" }
+spring-boot-starter-aop = { module = "org.springframework.boot:spring-boot-starter-aop", version.ref = "spring-boot" }
+
+spring-framework-web = { module = "org.springframework:spring-web", version.ref = "spring-framework" }
+spring-framework-context = { module = "org.springframework:spring-context", version.ref = "spring-framework" }
+spring-framework-tx = { module = "org.springframework:spring-tx", version.ref = "spring-framework" }
+
+spring-cloud-vault-config = { module = "org.springframework.cloud:spring-cloud-starter-vault-config", version.ref = "spring-cloud" }
+
+jdbi-core = { module = "org.jdbi:jdbi3-core", version.ref = "jdbi" }
+jdbi-postgres = { module = "org.jdbi:jdbi3-postgres", version.ref = "jdbi" }
+jdbi-kotlin = { module = "org.jdbi:jdbi3-kotlin", version.ref = "jdbi" }
+jdbi-sqlobject-kotlin = { module = "org.jdbi:jdbi3-kotlin-sqlobject", version.ref = "jdbi" }
+
+spring-ext-mockk = "com.ninja-squad:springmockk:4.0.0"
+
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+
+jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+
+liquibase-core = "org.liquibase:liquibase-core:4.19.0"
+liquibase-jakarta = "jakarta.xml.bind:jakarta.xml.bind-api:4.0.0"
+
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+
+logback-core = "ch.qos.logback:logback-core:1.4.5"
+logback-encoder = "net.logstash.logback:logstash-logback-encoder:7.2"
+
+assertj = "org.assertj:assertj-core:3.24.2"
+mockk = "io.mockk:mockk:1.13.3"
+
+postgres = "org.postgresql:postgresql:42.5.1"
+aws-secretsmanager = { module = "software.amazon.awssdk:secretsmanager", version.ref = "aws" }
+
+result = "com.michael-bull.kotlin-result:kotlin-result:1.1.16"
+
+json = "org.json:json:20220924"
+
+lazysodium = "com.goterl:lazysodium-java:5.1.4"
+
+micrometer-prometheus = { module = "io.micrometer:micrometer-registry-prometheus", version.ref = "micrometer" }
+
+[bundles]
+liquibase = ["liquibase-core", "liquibase-jakarta"]
+
+# for all of these, use the appropriate exclusions from build-commons
+
+test-implementation = [
+    "junit-jupiter-api",
+    "assertj",
+    "mockk"
+]
+
+test-runtime = [
+    "junit-jupiter-engine",
+    "slf4j-simple",
+    "logback-core"
+]
+
+test-spring-implementation = [
+    "junit-jupiter-api",
+    "assertj",
+    "spring-ext-mockk",
+    "spring-boot-starter-test"
+]
+
+test-spring-runtime = [
+    "junit-jupiter-engine"
+]

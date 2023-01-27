@@ -1,0 +1,79 @@
+{
+  "cohort": {
+    "name": "research-platform-specific-name",
+    "distribution": {
+      "age": [
+        {
+          "min": 0,
+          "max": 17,
+          "count": 1
+        },
+        {
+          "min": 18,
+          "max": 89,
+          "count": 49
+        },
+        {
+          "min": 90,
+          "count": 12
+        }
+      ],
+      "gender": [
+        {
+          "gender": "MALE",
+          "count": 49
+        },
+        {
+          "gender": "FEMALE",
+          "count": 60
+        },
+        {
+          "gender": "OTHER",
+          "count": 2
+        }
+      ]
+    },
+    "datasetVersion": "1.1.2",
+    "pseudonymIds": [
+      "id-1",
+      "id-2",
+      "id-3"
+    ],
+    "queryParams": [
+      {
+        "content": [
+          {
+            "attributes": [
+              {
+                "name": "patient.attributes.Gender",
+                "constraints": [
+                  "M"
+                ]
+              }
+            ],
+            "isExcluded": false,
+            "name": "The title of the filter"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "attributes": [],
+            "isExcluded": false,
+            "name": "The title of another filter"
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "attributes": [],
+            "isExcluded": true,
+            "name": "Death"
+          }
+        ]
+      }
+    ]
+  }
+}

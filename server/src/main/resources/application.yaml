@@ -1,0 +1,93 @@
+server.shutdown: graceful
+
+management:
+  endpoints:
+    enabled-by-default: no
+    web.exposure.include: health,metrics,prometheus
+  endpoint.health.enabled: yes
+  endpoint.prometheus.enabled: yes
+  endpoint.metrics.enabled: yes
+  metrics.enable.all: no
+  metrics:
+    enable:
+      # Excluded are spring.data.repository.invocations by RecontactApplication auto config exclusion
+      all: yes
+
+spring:
+  cloud.vault.enabled: false
+
+  datasource.url: # see secrets.rds-credentials
+
+  liquibase:
+    change-log: classpath:db/changelog.yaml
+    enabled: true
+
+  profiles:
+    group:
+      dev:
+        - secrets-aws
+        - jira
+        - debug
+        - json-log
+      prod:
+        - secrets-vault
+        - json-log
+        - jira
+
+secrets:
+  rds-credentials: recontact/dev/rds-credentials/recontact
+  jira-credentials: recontact/dev/jira-credentials
+  shared-cohort-key: recontact/dev/shared-cohort-key
+
+mock-secrets:
+  rds-credentials.recontact: postgresql://localhost:5432/development?user=username&password=password
+  jira-credentials: '{"username":"","password":""}'
+  shared-cohort-key: "0000000000000000000000000000000000000000000000000000000000000000"
+
+---
+spring.config.activate.on-profile: json-log
+spring.main.banner-mode: off
+
+---
+spring.config.activate.on-profile: secrets-vault
+
+spring.application.name: recontact
+spring.cloud:
+  vault:
+    enabled: true
+    host: localhost
+    port: 8200
+    scheme: http
+    authentication: APPROLE
+    token: # injected on deployment
+    app-role:
+      role: recontact
+spring.config.import:
+  - vault://secret/recontact/jira/encryption?prefix=jira-secrets.encryption.
+  - vault://secret/recontact/jira/credentials?prefix=jira-secrets.credentials.
+  - vault://secret/recontact/rds-credentials?prefix=rds-credentials.
+
+---
+jira:
+  base-url: https://healthmetrix.atlassian.net/rest/api/2
+  report-field-name: report
+  cohort-info-field-name: cohort info
+  invalid-status-name: invalid
+  plaintext-json-allowed: true # should only be true on test environments
+  report-sync-rate: PT24H
+  update-report-immediately: true # should only be true on test environments
+
+---
+spring.config.activate.on-profile: prod
+
+management.server.port: 8081
+
+jira:
+  base-url: TODO
+  report-field-name: TODO
+  cohort-info-field-name: TODO
+  invalid-status-name: TODO
+  plaintext-json-allowed: false
+  update-report-immediately: false
+
+---

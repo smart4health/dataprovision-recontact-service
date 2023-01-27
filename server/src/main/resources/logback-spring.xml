@@ -1,0 +1,19 @@
+<configuration>
+    <springProperty scope="context" name="profiles" source="spring.profiles.active" defaultValue="default"/>
+    <springProfile name="json-log">
+        <appender name="jsonConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="jsonConsoleAppender"/>
+        </root>
+    </springProfile>
+    <springProfile name="!json-log">
+        <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+        <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+        </root>
+        <logger name="com.healthmetrix" level="DEBUG"/>
+    </springProfile>
+</configuration>
