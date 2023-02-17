@@ -1,5 +1,13 @@
 # Smart4Health Data-provision Recontact Service
 
+## Acknowledgements
+
+<img src="./img/eu.jpg" align="left" alt="European Flag" width="60">
+
+This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 826117.
+
+## About
+
 After citizens have provided their data anonymously via
 the [MyScience App](https://github.com/smart4health/my-science-app), they can opt in to receiving re-contact messages
 from researchers of the platform. This service manages communicates with a Jira instance which serves as Data Access
