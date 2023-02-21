@@ -196,3 +196,28 @@ Confirm that it worked:
 curl --location --request GET 'http://localhost:8080/v1/messages?state=created' \
 --header 'X-Recontact-Citizen-Id: the-user-secret-you-want-to-use'
 ```
+
+## Code Stats
+Generated with [tokei](https://github.com/XAMPPRocky/tokei)
+
+```
+===============================================================================
+ Language            Files        Lines         Code     Comments       Blanks
+===============================================================================
+ Batch                   1           91           70            0           21
+ JSON                    5         1595         1595            0            0
+ Kotlin                 72         3810         3261           74          475
+ Shell                   2          271          122          117           32
+ SQL                     4           35           33            0            2
+ Plain Text              1           12            0           10            2
+ TOML                    1           97           72            1           24
+ XML                     1           19           19            0            0
+ YAML                    2          122          106            1           15
+-------------------------------------------------------------------------------
+ Markdown                1          161            0          103           58
+ |- Shell                1           42           42            0            0
+ (Total)                            203           42          103           58
+===============================================================================
+ Total                  90         6213         5278          306          629
+===============================================================================
+```
